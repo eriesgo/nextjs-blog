@@ -1,7 +1,130 @@
-import Head from 'next/head'
+
+import Head from "next/head";
+
+import { useState } from "react";
+
+import {
+  DxcApplicationLayout,
+  DxcButton,
+  DxcInset,
+  DxcHeading,
+  DxcParagraph,
+  DxcBulletedList,
+  DxcAccordionGroup
+} from "@dxc-technology/halstack-react";
 
 export default function Home() {
+
+  const [indexAccordion, setIndexAccordion] = useState(0);
+  const onActiveChange = (index) => {
+    setIndexAccordion((currentIndex) => (currentIndex === index ? -1 : index));
+  }
+
   return (
+    <DxcApplicationLayout
+      sidenav={
+        <DxcApplicationLayout.SideNav
+          padding="large"
+          title={
+            <DxcApplicationLayout.SideNav.Title>
+              Sample side nav
+            </DxcApplicationLayout.SideNav.Title>
+          }
+        >
+          <DxcApplicationLayout.SideNav.Section>
+            <DxcApplicationLayout.SideNav.Group title="Group A" collapsable>
+              <DxcApplicationLayout.SideNav.Link href="#">
+                Link 1
+              </DxcApplicationLayout.SideNav.Link>
+              <DxcApplicationLayout.SideNav.Link href="#">
+                Link 2
+              </DxcApplicationLayout.SideNav.Link>
+              <DxcApplicationLayout.SideNav.Link href="#">
+                Link 3
+              </DxcApplicationLayout.SideNav.Link>
+            </DxcApplicationLayout.SideNav.Group>
+
+            <DxcApplicationLayout.SideNav.Group title="Group B" collapsable>
+              <DxcApplicationLayout.SideNav.Link href="#">
+                Link 4
+              </DxcApplicationLayout.SideNav.Link>
+              <DxcApplicationLayout.SideNav.Link href="#">
+                Link 5
+              </DxcApplicationLayout.SideNav.Link>
+              <DxcApplicationLayout.SideNav.Link href="#">
+                Link 6
+              </DxcApplicationLayout.SideNav.Link>
+            </DxcApplicationLayout.SideNav.Group>
+          </DxcApplicationLayout.SideNav.Section>
+
+          <DxcApplicationLayout.SideNav.Section>
+            <DxcApplicationLayout.SideNav.Link href="#">
+              Isolated link
+            </DxcApplicationLayout.SideNav.Link>
+
+            <DxcApplicationLayout.SideNav.Group title="Group C" collapsable>
+              <DxcApplicationLayout.SideNav.Link href="#">
+                Link 7
+              </DxcApplicationLayout.SideNav.Link>
+              <DxcApplicationLayout.SideNav.Link href="#">
+                Link 8
+              </DxcApplicationLayout.SideNav.Link>
+              <DxcApplicationLayout.SideNav.Link href="#">
+                Link 9
+              </DxcApplicationLayout.SideNav.Link>
+            </DxcApplicationLayout.SideNav.Group>
+          </DxcApplicationLayout.SideNav.Section>
+        </DxcApplicationLayout.SideNav>
+      }
+    >
+      <DxcApplicationLayout.Main>
+        <DxcInset space="2rem">
+          <DxcHeading level={1} text="Level 1" />
+
+          <DxcParagraph>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla id
+            tortor sit amet velit auctor cursus id eget nisl. Vivamus luctus
+            egestas eros, at mattis libero eleifend ac. Integer vel urna rutrum,
+            pretium arcu dignissim, fringilla turpis. Nullam luctus odio quis
+            magna finibus, a pharetra magna euismod. Nullam efficitur semper
+            pellentesque. Nulla eget arcu ac diam fringilla vehicula. In
+            imperdiet nisl hendrerit, elementum metus eu, ornare risus.
+          </DxcParagraph>
+
+          <DxcHeading level={2} text="Level 2" />
+
+          <DxcBulletedList type="disc">
+            <DxcBulletedList.Item>Code</DxcBulletedList.Item>
+            <DxcBulletedList.Item>Usage</DxcBulletedList.Item>
+            <DxcBulletedList.Item>Specifications</DxcBulletedList.Item>
+          </DxcBulletedList>
+
+          <DxcHeading level={3} text="Level 3" />
+        </DxcInset>
+
+        <DxcInset space="2rem">
+          <DxcAccordionGroup
+            indexActive={indexAccordion}
+            onActiveChange={onActiveChange}
+            >
+              <DxcAccordionGroup.Accordion label="How to edit your profile?">
+                <DxcInset space="1.5rem">
+                  <DxcParagraph>To edit your profile you need to go to Settings and click on Profile.</DxcParagraph>
+                </DxcInset>
+                </DxcAccordionGroup.Accordion>
+              <DxcAccordionGroup.Accordion label="How to log out?">
+              <DxcInset space="1.5rem">
+              <DxcParagraph>To log out you have to click to your profile and click on Log out.</DxcParagraph>
+                </DxcInset>
+              </DxcAccordionGroup.Accordion>
+            </DxcAccordionGroup>
+        </DxcInset>
+      </DxcApplicationLayout.Main>
+    </DxcApplicationLayout>
+  );
+}
+
+/*
     <div className="container">
       <Head>
         <title>Create Next App</title>
@@ -10,7 +133,7 @@ export default function Home() {
 
       <main>
         <h1 className="title">
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
+          Learn <a href="https://nextjs.org">Next.js!</a>
         </h1>
 
         <p className="description">
@@ -45,6 +168,9 @@ export default function Home() {
               Instantly deploy your Next.js site to a public URL with Vercel.
             </p>
           </a>
+
+          <DxcButton label="Button" />
+
         </div>
       </main>
 
@@ -204,6 +330,4 @@ export default function Home() {
           box-sizing: border-box;
         }
       `}</style>
-    </div>
-  )
-}
+    </div>*/
